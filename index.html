@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hatch Birthday Party — July 31</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0f;
+      --dark: #0f0f1a;
+      --pink: #ff2d78;
+      --yellow: #ffe600;
+      --purple: #b44fff;
+      --cyan: #00f0ff;
+      --white: #f5f5f5;
+      --muted: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 50%, rgba(255,45,120,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,240,255,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 18vw, 180px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      position: relative;
+    }
+
+    .hero-title .name-camryn {
+      display: block;
+      -webkit-text-stroke: 2px var(--pink);
+      color: transparent;
+      text-shadow: 0 0 40px rgba(255,45,120,0.5);
+    }
+
+    .hero-title .ampersand {
+      display: block;
+      color: var(--yellow);
+      font-size: 0.6em;
+      text-shadow: 0 0 30px rgba(255,230,0,0.6);
+    }
+
+    .hero-title .name-dallas {
+      display: block;
+      -webkit-text-stroke: 2px var(--cyan);
+      color: transparent;
+      text-shadow: 0 0 40px rgba(0,240,255,0.5);
+    }
+
+    .tagline {
+      margin-top: 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(14px, 2.5vw, 20px);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      max-width: 480px;
+    }
+
+    .tagline em {
+      color: var(--white);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1.5px solid var(--pink);
+      color: var(--pink);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--pink);
+      color: var(--black);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 8vw, 72px);
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #aaa;
+    }
+
+    .section-body p + p {
+      margin-top: 16px;
+    }
+
+    .section-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+      opacity: 0.4;
+    }
+
+    /* ── DETAILS GRID ── */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 48px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .detail-cell {
+      padding: 28px 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .detail-cell .label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .detail-cell .value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--white);
+      letter-spacing: 0.03em;
+    }
+
+    .detail-cell .value.pink { color: var(--pink); text-shadow: 0 0 20px rgba(255,45,120,0.4); }
+    .detail-cell .value.yellow { color: var(--yellow); text-shadow: 0 0 20px rgba(255,230,0,0.3); }
+    .detail-cell .value.cyan { color: var(--cyan); text-shadow: 0 0 20px rgba(0,240,255,0.3); }
+    .detail-cell .value.purple { color: var(--purple); text-shadow: 0 0 20px rgba(180,79,255,0.3); }
+
+    @media (max-width: 540px) {
+      .details-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FINE PRINT ── */
+    .fine-print {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 40px;
+      margin-top: 48px;
+    }
+
+    .fine-print h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--yellow);
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .fine-print ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fine-print ul li {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .fine-print ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--pink);
+    }
+
+    /* ── RSVP ── */
+    .rsvp-section {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .rsvp-section section {
+      max-width: 600px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"] {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus {
+      border-color: var(--pink);
+    }
+
+    .radio-group, .subscribe-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .radio-option:hover {
+      border-color: rgba(255,45,120,0.4);
+      background: rgba(255,45,120,0.04);
+    }
+
+    .radio-option input[type="radio"],
+    .radio-option input[type="checkbox"] {
+      margin-top: 2px;
+      accent-color: var(--pink);
+      flex-shrink: 0;
+    }
+
+    .radio-option span {
+      font-size: 14px;
+      color: #bbb;
+      line-height: 1.5;
+    }
+
+    .subscribe-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--white);
+      margin-bottom: 4px;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+
+    .subscribe-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--pink);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      margin-top: 32px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .deadline-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .rsvp-success {
+      display: none;
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .rsvp-success .big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 10vw, 80px);
+      color: var(--yellow);
+      text-shadow: 0 0 30px rgba(255,230,0,0.5);
+      margin-bottom: 16px;
+    }
+
+    .rsvp-success p {
+      font-size: 15px;
+      color: #aaa;
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; }
+      .scroll-hint { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">You are cordially invited to attend</p>
+    <h1 class="hero-title">
+      <span class="name-camryn">Camryn</span>
+      <span class="ampersand">&</span>
+      <span class="name-dallas">Dallas</span>
+    </h1>
+    <p class="tagline">A joint birthday celebration. <em>Not weird. It's economical.</em></p>
+    <a href="#rsvp" class="hero-cta">RSVP Now</a>
+    <span class="scroll-hint">↓ scroll ↓</span>
+  </div>
+
+  <!-- WHAT'S HAPPENING -->
+  <div class="divider"></div>
+  <section class="fade-in">
+    <span class="section-label">The Situation</span>
+    <h2 class="section-title">Two Birthdays.<br>One Party.<br>Zero Apologies.</h2>
+    <div class="section-body">
+      <p>Dallas turns <strong>29 on June 17th</strong>. Camryn turns <strong>28 on August 11th</strong>. After careful logistical analysis, we have determined that holding two separate parties would be inefficient, exhausting, and frankly, a lot to ask of everyone's social calendars.</p>
+      <p>So we're doing this once, we're doing it right, and we're doing it at a karaoke bar. Come celebrate with us — or don't, but you'll regret missing it.</p>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <div class="divider"></div>
+  <section class="fade-in">
+    <span class="section-label">Operational Details</span>
+    <h2 class="section-title">The Logistics</h2>
+    <div class="details-grid">
+      <div class="detail-cell">
+        <span class="label">Date</span>
+        <span class="value pink">July 31, 2025</span>
+      </div>
+      <div class="detail-cell">
+        <span class="label">Time</span>
+        <span class="value yellow">TBD</span>
+      </div>
+      <div class="detail-cell">
+        <span class="label">Venue</span>
+        <span class="value cyan">La La's</span>
+      </div>
+      <div class="detail-cell">
+        <span class="label">Location</span>
+        <span class="value purple">Tampa, FL</span>
+      </div>
+      <div class="detail-cell" style="grid-column: 1 / -1;">
+        <span class="label">Format</span>
+        <span class="value" style="font-size:20px;">Private karaoke room · 25 guests · Everyone gets a plus one</span>
+      </div>
+    </div>
+
+    <div class="fine-print">
+      <h3>Terms & Conditions</h3>
+      <ul>
+        <li>No gifts. Seriously. Your presence is the gift. We mean it.</li>
+        <li>No need to contribute to the room. We've got it. Just show up.</li>
+        <li>You will be expected to sing. Reluctance is not a valid RSVP response.</li>
+        <li>By attending, you acknowledge that karaoke selections are final and non-negotiable.</li>
+        <li>We reserve the right to make this an annual consolidation event.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <div class="divider"></div>
+  <div class="rsvp-section" id="rsvp">
+    <section>
+      <span class="section-label">Required Action Item</span>
+      <h2 class="section-title">RSVP</h2>
+      <p class="section-body" style="margin-bottom: 40px;">Headcount matters. Please let us know by <strong>July 15th</strong> so we can plan accordingly.</p>
+
+      <div id="rsvp-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="First and last, please" />
+        </div>
+
+        <div class="form-group">
+          <label>Will you be attending?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attending" value="yes" />
+              <span>Yes — I'll be there and I'm already thinking about my setlist</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attending" value="no" />
+              <span>No — I cannot make it and I will think about this decision for years</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Are you bringing a plus one?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="plusone" value="yes" />
+              <span>Yes — they will also be expected to sing</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="plusone" value="no" />
+              <span>No — flying solo, which is brave</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 40px;">
+          <span class="subscribe-label">While We Have You</span>
+          <span class="subscribe-sub">Future Hatch event communications — select one:</span>
+          <div class="subscribe-group">
+            <label class="radio-option">
+              <input type="radio" name="subscribe" value="yes" />
+              <span>Yes, add me to the list — I'm locked in, let's go</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="subscribe" value="maybe" />
+              <span>I reserve the right to assess the vibe of this event before committing to future ones</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="subscribe" value="no" />
+              <span>Absolutely not, you two are insufferable</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitRSVP()">SUBMIT RSVP</button>
+        <p class="deadline-note">RSVP deadline: July 15, 2025 · Responses after this date will be reviewed on a case-by-case basis</p>
+      </div>
+
+      <div class="rsvp-success" id="rsvp-success">
+        <p class="big">You're In.</p>
+        <p>Thanks for RSVPing. We'll see you July 31st. Start warming up your vocals — this is not a spectator event.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Camryn & Dallas Hatch · Tampa, FL · Economically consolidated since 2025
+  </footer>
+
+  <script>
+    // Fade in on scroll
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // RSVP submit
+    function submitRSVP() {
+      const name = document.getElementById('name').value.trim();
+      const attending = document.querySelector('input[name="attending"]:checked');
+      if (!name || !attending) {
+        alert('Please fill out your name and let us know if you\'re attending.');
+        return;
+      }
+      document.getElementById('rsvp-form').style.display = 'none';
+      document.getElementById('rsvp-success').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
