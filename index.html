@@ -4,19 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hatch Birthday Party — July 31</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --black: #0a0a0f;
-      --dark: #0f0f1a;
-      --pink: #ff2d78;
-      --yellow: #ffe600;
+      --pink: #ff0fa6;
+      --pink2: #ff2d78;
       --purple: #b44fff;
-      --cyan: #00f0ff;
+      --purple-deep: #5a00b4;
+      --cyan: #00d9f0;
+      --blue-deep: #0066cc;
+      --yellow: #ffe600;
+      --orange: #ff8a00;
       --white: #f5f5f5;
-      --muted: #888;
     }
 
     html { scroll-behavior: smooth; }
@@ -28,497 +30,369 @@
       overflow-x: hidden;
     }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    body.locked { overflow: hidden; height: 100vh; }
+
+    .display-font { font-family: 'Comic Neue', 'Comic Sans MS', cursive; }
+
+    /* ── LOCK SCREEN ── */
+    .lock-screen {
+      position: fixed; inset: 0; z-index: 9999;
+      overflow-y: auto;
+      background: #ff0fa6;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.55) 0%, transparent 7%),
+        radial-gradient(circle at 75% 15%, rgba(255,255,255,0.45) 0%, transparent 5%),
+        radial-gradient(circle at 60% 70%, rgba(255,255,255,0.5) 0%, transparent 6%),
+        radial-gradient(circle at 25% 85%, rgba(255,255,255,0.4) 0%, transparent 5%),
+        linear-gradient(135deg, #ff0fa6, #6a00ff 80%);
+      color: #fff;
       text-align: center;
-      padding: 60px 24px;
-      position: relative;
-      overflow: hidden;
+      transition: opacity 0.5s ease;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 20% 50%, rgba(255,45,120,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,240,255,0.13) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .lock-screen.unlocking { opacity: 0; pointer-events: none; }
 
-    .hero-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
+    .lock-marquee {
+      background: #000;
       color: var(--yellow);
-      margin-bottom: 24px;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(72px, 18vw, 180px);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      position: relative;
-    }
-
-    .hero-title .name-camryn {
-      display: block;
-      -webkit-text-stroke: 2px var(--pink);
-      color: transparent;
-      text-shadow: 0 0 40px rgba(255,45,120,0.5);
-    }
-
-    .hero-title .ampersand {
-      display: block;
-      color: var(--yellow);
-      font-size: 0.6em;
-      text-shadow: 0 0 30px rgba(255,230,0,0.6);
-    }
-
-    .hero-title .name-dallas {
-      display: block;
-      -webkit-text-stroke: 2px var(--cyan);
-      color: transparent;
-      text-shadow: 0 0 40px rgba(0,240,255,0.5);
-    }
-
-    .tagline {
-      margin-top: 32px;
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(14px, 2.5vw, 20px);
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      max-width: 480px;
-    }
-
-    .tagline em {
-      color: var(--white);
-      font-style: normal;
-      font-weight: 600;
-    }
-
-    .hero-cta {
-      margin-top: 48px;
-      display: inline-block;
-      padding: 14px 40px;
-      border: 1.5px solid var(--pink);
-      color: var(--pink);
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      padding: 6px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      border-bottom: 2px dashed var(--yellow);
+    }
+    .lock-marquee span { display: inline-block; padding-left: 100%; animation: lock-marquee-scroll 28s linear infinite; }
+    @keyframes lock-marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+    .lock-body {
+      padding: 60px 24px 48px;
+      min-height: calc(100vh - 28px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
 
-    .hero-cta:hover {
-      background: var(--pink);
-      color: var(--black);
+    .cd-disc {
+      width: 130px; height: 130px; margin: 0 auto 18px;
+      border-radius: 50%;
+      position: relative;
+      background:
+        repeating-radial-gradient(circle, rgba(255,255,255,0.10) 0px, rgba(255,255,255,0.10) 1px, transparent 2px, transparent 6px),
+        conic-gradient(from 200deg,
+          #d9d9e8 0deg, #fff 20deg, var(--pink2) 60deg, var(--yellow) 110deg,
+          var(--cyan) 160deg, var(--purple) 210deg, #fff 260deg, #d9d9e8 300deg, #d9d9e8 360deg);
+      box-shadow:
+        0 0 0 2px rgba(0,0,0,0.6),
+        0 6px 18px rgba(0,0,0,0.5),
+        inset 0 0 20px rgba(255,255,255,0.5);
+      transition: transform 0.8s ease-in, opacity 0.8s ease-in;
+    }
+    .cd-disc::before {
+      content: '';
+      position: absolute; inset: 30%;
+      background: radial-gradient(circle, #000 55%, #fff 56% 60%, #000 61%);
+      border-radius: 50%;
+    }
+    .cd-disc::after {
+      content: '';
+      position: absolute; inset: 44%;
+      background: #1a0b2e;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.4);
+    }
+    .cd-disc.spinning { transform: rotate(900deg) scale(1.4); opacity: 0; }
+
+    .lock-title {
+      font-weight: 700; font-size: clamp(32px, 9vw, 44px); color: #fff;
+      text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
+      transform: rotate(-1.5deg); display: inline-block; line-height: 1.1;
+    }
+    .lock-title .amp { color: var(--yellow); }
+
+    .lock-tagline {
+      margin-top: 14px; font-size: 14px; letter-spacing: 0.3px; color: #fff0fa;
+      text-shadow: 1px 1px 0 #000; max-width: 280px;
+    }
+    .lock-tagline em { color: var(--yellow); font-style: normal; font-weight: bold; }
+
+    .blinkie {
+      display: inline-block; padding: 4px 10px;
+      background: #000; border: 1px solid var(--yellow); color: var(--yellow);
+      font-size: 10px; letter-spacing: 1px;
+      animation: blinkie-blink 1.4s steps(1) infinite;
+    }
+    @keyframes blinkie-blink { 50% { opacity: 0.25; } }
+    @media (prefers-reduced-motion: reduce) { .blinkie { animation: none; } }
+    .lock-body .blinkie { margin-top: 16px; }
+
+    .lock-form { margin-top: 26px; max-width: 280px; width: 100%; }
+    .lock-hint { font-size: 11px; color: #fff0fa; margin-bottom: 8px; }
+    .lock-input {
+      width: 100%; padding: 14px; border-radius: 6px; border: 2px dashed #fff;
+      background: rgba(0,0,0,0.25); color: #fff; font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-size: 15px; text-align: center; outline: none;
+    }
+    .lock-input::placeholder { color: rgba(255,255,255,0.7); }
+    .lock-btn {
+      margin-top: 12px; width: 100%; padding: 14px; border-radius: 6px; border: none;
+      background: var(--yellow); color: #000; font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-weight: bold; font-size: 16px; letter-spacing: 1px; cursor: pointer;
+    }
+    .lock-btn:hover { opacity: 0.9; }
+    .lock-error { margin-top: 10px; font-size: 13px; color: var(--yellow); min-height: 1.2em; }
+    .lock-form.shake { animation: shake 0.4s; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      animation: bounce 2s infinite;
+    /* ── CELEBRATE BANNER ── */
+    .celebrate {
+      text-align: center; font-size: 14px; letter-spacing: 1px; color: var(--yellow);
+      text-shadow: 1px 1px 0 #000; padding: 18px 24px 0; background: var(--black);
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
+    /* ── THEME SECTIONS ── */
+    .theme-section { position: relative; overflow: hidden; padding: 56px 20px; }
+    .section-inner { max-width: 620px; margin: 0 auto; position: relative; }
 
-    /* ── SECTIONS ── */
-    section {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 100px 24px;
-    }
+    .section-pink { background: radial-gradient(circle at 12% 15%, rgba(255,255,255,0.3) 0%, transparent 6%), radial-gradient(circle at 85% 75%, rgba(255,255,255,0.25) 0%, transparent 5%), linear-gradient(160deg, var(--pink) 0%, #b400e0 100%); }
+    .section-cyan { background: radial-gradient(circle at 80% 15%, rgba(255,255,255,0.3) 0%, transparent 5%), radial-gradient(circle at 15% 80%, rgba(255,255,255,0.25) 0%, transparent 5%), linear-gradient(160deg, var(--cyan) 0%, var(--blue-deep) 100%); }
+    .section-yellow { background: radial-gradient(circle at 15% 20%, rgba(255,255,255,0.3) 0%, transparent 5%), radial-gradient(circle at 85% 70%, rgba(255,255,255,0.25) 0%, transparent 5%), linear-gradient(160deg, var(--yellow) 0%, var(--orange) 100%); }
+    .section-purple { background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.3) 0%, transparent 5%), radial-gradient(circle at 20% 80%, rgba(255,255,255,0.25) 0%, transparent 5%), linear-gradient(160deg, var(--purple) 0%, var(--purple-deep) 100%); }
+
+    .sticker { position: absolute; font-size: 22px; opacity: 0.85; pointer-events: none; }
 
     .section-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 20px;
-      display: block;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 8px; display: inline-block; background: #000; color: #fff;
+      padding: 3px 9px; border-radius: 4px; transform: rotate(-2deg);
     }
-
     .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(40px, 8vw, 72px);
-      line-height: 1;
-      color: var(--white);
-      margin-bottom: 24px;
+      font-weight: 700; font-size: clamp(26px, 7vw, 38px); color: #fff;
+      text-shadow: 2px 2px 0 #000; line-height: 1.15; margin-bottom: 18px;
+      transform: rotate(-0.5deg); display: inline-block;
+    }
+    .section-yellow .section-title { color: #1a0b2e; text-shadow: 2px 2px 0 #fff; }
+    .section-yellow .section-label { background: #1a0b2e; }
+
+    .content-card {
+      background: rgba(0,0,0,0.45); border: 2px dashed #fff; border-radius: 12px;
+      padding: 20px 22px; max-width: 580px;
+    }
+    .section-body { font-size: 15px; line-height: 1.75; color: #f3e9ff; }
+    .section-body strong { color: var(--yellow); }
+    .section-body p + p { margin-top: 14px; }
+
+    .details-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
+    @media (min-width: 540px) { .details-grid { grid-template-columns: 1fr 1fr; } }
+    .detail-cell { border: 2px dashed #000; border-radius: 8px; padding: 14px 16px; background: rgba(255,255,255,0.2); color: #000; transform: rotate(0.6deg); }
+    .detail-cell:nth-child(even) { transform: rotate(-0.6deg); }
+    .detail-cell.full { grid-column: 1 / -1; }
+    .detail-cell .dlabel { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 4px; }
+    .detail-cell .dvalue { font-weight: bold; font-size: 20px; }
+
+    .fine-print { margin-top: 24px; }
+    .fine-print h3 { font-size: 20px; color: var(--yellow); margin-bottom: 14px; }
+    .fine-print ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .fine-print li { font-size: 13px; color: #f3e9ff; line-height: 1.6; padding-left: 20px; position: relative; }
+    .fine-print li::before { content: '✦'; position: absolute; left: 0; color: var(--yellow); }
+
+    /* ── QUIZ ── */
+    .quiz-card { background: rgba(0,0,0,0.5); border: 3px dashed #1a0b2e; border-radius: 12px; padding: 24px; max-width: 580px; }
+    .quiz-progress { font-size: 11px; letter-spacing: 1px; color: var(--yellow); margin-bottom: 12px; }
+    .quiz-q { font-size: 19px; color: #fff; margin-bottom: 16px; line-height: 1.4; }
+    .quiz-opt {
+      display: block; width: 100%; text-align: left; padding: 13px 16px; margin-bottom: 10px;
+      border-radius: 8px; border: 2px dashed #fff; background: rgba(255,255,255,0.08);
+      color: #fff; font-family: 'Comic Neue', 'Comic Sans MS', cursive; font-size: 14px;
+      cursor: pointer; min-height: 44px;
+    }
+    .quiz-opt:hover { background: rgba(255,255,255,0.18); }
+    .quiz-result { text-align: center; }
+    .quiz-result-emoji { font-size: 56px; }
+    .quiz-result-title { font-size: 22px; color: var(--yellow); margin: 12px 0; text-shadow: 1px 1px 0 #000; line-height: 1.3; }
+    .quiz-result-desc { font-size: 14px; color: #f3e9ff; line-height: 1.65; max-width: 440px; margin: 0 auto; }
+    .quiz-retake {
+      margin-top: 20px; padding: 12px 24px; border-radius: 8px; border: 2px dashed var(--yellow);
+      background: transparent; color: var(--yellow); font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-size: 14px; font-weight: bold; cursor: pointer; min-height: 44px;
     }
 
-    .section-body {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #aaa;
+    /* ── RSVP FORM ── */
+    .form-group { margin-bottom: 20px; }
+    .form-group label.field-label { font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; display: block; color: #fff; }
+    .form-input {
+      width: 100%; padding: 14px; border-radius: 8px; border: 2px dashed #fff;
+      background: rgba(0,0,0,0.35); color: #fff; font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      font-size: 15px; outline: none;
     }
-
-    .section-body p + p {
-      margin-top: 16px;
-    }
-
-    .section-body strong {
-      color: var(--white);
-      font-weight: 600;
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--purple), transparent);
-      opacity: 0.4;
-    }
-
-    /* ── DETAILS GRID ── */
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 48px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .detail-cell {
-      padding: 28px 24px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .detail-cell .label {
-      font-size: 10px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .detail-cell .value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: var(--white);
-      letter-spacing: 0.03em;
-    }
-
-    .detail-cell .value.pink { color: var(--pink); text-shadow: 0 0 20px rgba(255,45,120,0.4); }
-    .detail-cell .value.yellow { color: var(--yellow); text-shadow: 0 0 20px rgba(255,230,0,0.3); }
-    .detail-cell .value.cyan { color: var(--cyan); text-shadow: 0 0 20px rgba(0,240,255,0.3); }
-    .detail-cell .value.purple { color: var(--purple); text-shadow: 0 0 20px rgba(180,79,255,0.3); }
-
-    @media (max-width: 540px) {
-      .details-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── FINE PRINT ── */
-    .fine-print {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      padding: 40px;
-      margin-top: 48px;
-    }
-
-    .fine-print h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: var(--yellow);
-      margin-bottom: 20px;
-      letter-spacing: 0.05em;
-    }
-
-    .fine-print ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .fine-print ul li {
-      font-size: 14px;
-      color: #aaa;
-      line-height: 1.6;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .fine-print ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--pink);
-    }
-
-    /* ── RSVP ── */
-    .rsvp-section {
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .rsvp-section section {
-      max-width: 600px;
-    }
-
-    .form-group {
-      margin-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-group label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="email"] {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-
-    .form-group input:focus {
-      border-color: var(--pink);
-    }
-
-    .radio-group, .subscribe-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    .form-input::placeholder { color: rgba(255,255,255,0.6); }
     .radio-option {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      cursor: pointer;
-      padding: 12px 16px;
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: border-color 0.2s, background 0.2s;
+      display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+      padding: 13px 16px; border: 2px dashed rgba(255,255,255,0.6); border-radius: 8px;
+      background: rgba(0,0,0,0.25); margin-bottom: 8px; min-height: 44px;
     }
-
-    .radio-option:hover {
-      border-color: rgba(255,45,120,0.4);
-      background: rgba(255,45,120,0.04);
-    }
-
-    .radio-option input[type="radio"],
-    .radio-option input[type="checkbox"] {
-      margin-top: 2px;
-      accent-color: var(--pink);
-      flex-shrink: 0;
-    }
-
-    .radio-option span {
-      font-size: 14px;
-      color: #bbb;
-      line-height: 1.5;
-    }
-
-    .subscribe-label {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      color: var(--white);
-      margin-bottom: 4px;
-      display: block;
-      letter-spacing: 0.05em;
-    }
-
-    .subscribe-sub {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 16px;
-      display: block;
-    }
-
+    .radio-option input { margin-top: 3px; accent-color: var(--yellow); flex-shrink: 0; }
+    .radio-option span { font-size: 13px; color: #f3e9ff; line-height: 1.5; }
+    .sub-label { font-size: 16px; color: var(--yellow); display: block; margin-bottom: 2px; }
+    .sub-sub { font-size: 11px; opacity: 0.85; display: block; margin-bottom: 10px; color: #f3e9ff; }
     .submit-btn {
-      width: 100%;
-      padding: 18px;
-      background: var(--pink);
-      color: var(--black);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 0.1em;
-      border: none;
-      cursor: pointer;
-      margin-top: 32px;
-      transition: opacity 0.2s, transform 0.1s;
+      width: 100%; padding: 16px; border-radius: 10px; border: none; background: var(--yellow);
+      color: #000; font-family: 'Comic Neue', 'Comic Sans MS', cursive; font-weight: bold;
+      font-size: 18px; letter-spacing: 1px; cursor: pointer; margin-top: 8px; min-height: 44px;
     }
+    .submit-btn:hover { opacity: 0.9; }
+    .deadline-note { text-align: center; font-size: 12px; color: #f3e9ff; opacity: 0.85; margin-top: 14px; }
+    .rsvp-error { color: var(--yellow); font-size: 13px; text-align: center; margin-top: 10px; }
 
-    .submit-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
-
-    .deadline-note {
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 16px;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── SUCCESS STATE ── */
-    .rsvp-success {
-      display: none;
-      text-align: center;
-      padding: 60px 24px;
-    }
-
-    .rsvp-success .big {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 10vw, 80px);
-      color: var(--yellow);
-      text-shadow: 0 0 30px rgba(255,230,0,0.5);
-      margin-bottom: 16px;
-    }
-
-    .rsvp-success p {
-      font-size: 15px;
-      color: #aaa;
-      max-width: 400px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+    .rsvp-success { display: none; text-align: center; padding: 40px 0 0; }
+    .rsvp-success .big { font-size: clamp(40px, 9vw, 64px); color: var(--yellow); text-shadow: 0 0 24px rgba(255,230,0,0.5); margin-bottom: 14px; }
+    .rsvp-success p { font-size: 14px; color: #f3e9ff; max-width: 380px; margin: 0 auto; line-height: 1.7; }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 48px 24px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.1em;
+    footer { text-align: center; padding: 40px 24px; font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
+
+    /* ── CURSOR SPARKLE TRAIL (desktop only) ── */
+    .cursor-sparkle {
+      position: absolute; pointer-events: none; font-size: 16px; z-index: 9998;
+      animation: sparkle-float 0.7s ease-out forwards;
+    }
+    @keyframes sparkle-float { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-26px) scale(0.6); } }
+
+    /* ── UNLOCK GLITTER BURST ── */
+    .glitter-burst-piece {
+      position: fixed; pointer-events: none; z-index: 10000; font-size: 22px;
+      animation: glitter-burst 0.9s ease-out forwards;
+    }
+    @keyframes glitter-burst {
+      0% { opacity: 1; transform: translate(0,0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--gx), var(--gy)) scale(0.4); }
     }
 
     /* ── FADE IN ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
       .fade-in { opacity: 1; transform: none; }
-      .scroll-hint { animation: none; }
+      .lock-marquee span { animation: none; }
+      .cd-disc { transition: none; }
+      .cursor-sparkle, .glitter-burst-piece { display: none; }
     }
   </style>
 </head>
-<body>
+<body class="locked display-font">
 
-  <!-- HERO -->
-  <div class="hero">
-    <p class="hero-eyebrow">You are cordially invited to attend</p>
-    <h1 class="hero-title">
-      <span class="name-camryn">Camryn</span>
-      <span class="ampersand">&</span>
-      <span class="name-dallas">Dallas</span>
-    </h1>
-    <p class="tagline">A joint birthday celebration. <em>Not weird. It's economical.</em></p>
-    <a href="#rsvp" class="hero-cta">RSVP Now</a>
-    <span class="scroll-hint">↓ scroll ↓</span>
+  <!-- Hidden static form so Netlify's build bot can detect the RSVP form -->
+  <form name="rsvp" data-netlify="true" hidden>
+    <input type="text" name="name" />
+    <input type="radio" name="attending" value="yes" />
+    <input type="radio" name="attending" value="no" />
+    <input type="radio" name="plusone" value="yes" />
+    <input type="radio" name="plusone" value="no" />
+    <input type="radio" name="subscribe" value="yes" />
+    <input type="radio" name="subscribe" value="maybe" />
+    <input type="radio" name="subscribe" value="no" />
+  </form>
+
+  <!-- LOCK SCREEN -->
+  <div class="lock-screen" id="lock-screen">
+    <div class="lock-marquee"><span>✨ you are cordially invited... but you gotta know the magic word ✨&nbsp;&nbsp;&nbsp;&nbsp;✨ you are cordially invited... but you gotta know the magic word ✨</span></div>
+    <div class="lock-body">
+      <div class="cd-disc" id="lock-disc"></div>
+      <h1 class="lock-title">camryn <span class="amp">&amp;</span> dallas</h1>
+      <p class="lock-tagline">A joint birthday celebration. <em>Not weird. It's economical.</em></p>
+      <span class="blinkie">★ C+D 4EVER ★</span>
+      <form class="lock-form" id="lock-form" autocomplete="off">
+        <p class="lock-hint">got the magic word? type it below ✦</p>
+        <input type="text" id="password-input" class="lock-input" placeholder="enter password..." autocomplete="off" />
+        <button type="submit" class="lock-btn">UNLOCK ✦</button>
+        <p class="lock-error" id="lock-error" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 
-  <!-- WHAT'S HAPPENING -->
-  <div class="divider"></div>
-  <section class="fade-in">
-    <span class="section-label">The Situation</span>
-    <h2 class="section-title">Two Birthdays.<br>One Party.<br>Zero Apologies.</h2>
-    <div class="section-body">
-      <p>Dallas turns <strong>29 on June 17th</strong>. Camryn turns <strong>28 on August 11th</strong>. After careful logistical analysis, we have determined that holding two separate parties would be inefficient, exhausting, and frankly, a lot to ask of everyone's social calendars.</p>
-      <p>So we're doing this once, we're doing it right, and we're doing it at a karaoke bar. Come celebrate with us — or don't, but you'll regret missing it.</p>
-    </div>
-  </section>
+  <!-- MAIN SITE -->
+  <main id="site-content">
+    <div class="celebrate">★ ✦ you cracked the code ✦ ★</div>
 
-  <!-- DETAILS -->
-  <div class="divider"></div>
-  <section class="fade-in">
-    <span class="section-label">Operational Details</span>
-    <h2 class="section-title">The Logistics</h2>
-    <div class="details-grid">
-      <div class="detail-cell">
-        <span class="label">Date</span>
-        <span class="value pink">July 31, 2025</span>
+    <!-- SITUATION -->
+    <section class="theme-section section-pink fade-in">
+      <span class="sticker" style="top:18px; right:20px; transform:rotate(15deg);">💖</span>
+      <span class="sticker" style="bottom:24px; left:16px; transform:rotate(-10deg);">✦</span>
+      <div class="section-inner">
+        <span class="section-label">The Situation</span>
+        <h2 class="section-title">Two Birthdays.<br>One Party.<br>Zero Apologies.</h2>
+        <div class="content-card">
+          <div class="section-body">
+            <p>Dallas turns <strong>29 on June 17th</strong>. Camryn turns <strong>28 on August 11th</strong>. After careful logistical analysis, we have determined that holding two separate parties would be inefficient, exhausting, and frankly, a lot to ask of everyone's social calendars.</p>
+            <p>So we're doing this once, we're doing it right, and we're doing it at a karaoke bar. Come celebrate with us — or don't, but you'll regret missing it.</p>
+          </div>
+        </div>
       </div>
-      <div class="detail-cell">
-        <span class="label">Time</span>
-        <span class="value yellow">TBD</span>
-      </div>
-      <div class="detail-cell">
-        <span class="label">Venue</span>
-        <span class="value cyan">La La's</span>
-      </div>
-      <div class="detail-cell">
-        <span class="label">Location</span>
-        <span class="value purple">Tampa, FL</span>
-      </div>
-      <div class="detail-cell" style="grid-column: 1 / -1;">
-        <span class="label">Format</span>
-        <span class="value" style="font-size:20px;">Private karaoke room · 25 guests · Everyone gets a plus one</span>
-      </div>
-    </div>
+    </section>
 
-    <div class="fine-print">
-      <h3>Terms & Conditions</h3>
-      <ul>
-        <li>No gifts. Seriously. Your presence is the gift. We mean it.</li>
-        <li>No need to contribute to the room. We've got it. Just show up.</li>
-        <li>You will be expected to sing. Reluctance is not a valid RSVP response.</li>
-        <li>By attending, you acknowledge that karaoke selections are final and non-negotiable.</li>
-        <li>We reserve the right to make this an annual consolidation event.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <div class="divider"></div>
-  <div class="rsvp-section" id="rsvp">
-    <section>
-      <span class="section-label">Required Action Item</span>
-      <h2 class="section-title">RSVP</h2>
-      <p class="section-body" style="margin-bottom: 40px;">Headcount matters. Please let us know by <strong>July 15th</strong> so we can plan accordingly.</p>
-
-      <div id="rsvp-form">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" placeholder="First and last, please" />
+    <!-- LOGISTICS -->
+    <section class="theme-section section-cyan fade-in">
+      <span class="sticker" style="top:20px; left:18px; transform:rotate(-12deg);">💿</span>
+      <span class="sticker" style="bottom:18px; right:22px; transform:rotate(18deg);">⚡</span>
+      <div class="section-inner">
+        <span class="section-label">Operational Details</span>
+        <h2 class="section-title">The Logistics</h2>
+        <div class="details-grid">
+          <div class="detail-cell"><span class="dlabel">Date</span><span class="dvalue">July 31, 2025</span></div>
+          <div class="detail-cell"><span class="dlabel">Time</span><span class="dvalue">TBD</span></div>
+          <div class="detail-cell"><span class="dlabel">Venue</span><span class="dvalue">La La's</span></div>
+          <div class="detail-cell"><span class="dlabel">Location</span><span class="dvalue">Tampa, FL</span></div>
+          <div class="detail-cell full"><span class="dlabel">Format</span><span class="dvalue" style="font-size:16px;">Private karaoke room · 25 guests · Everyone gets a plus one</span></div>
         </div>
 
-        <div class="form-group">
-          <label>Will you be attending?</label>
-          <div class="radio-group">
+        <div class="content-card fine-print">
+          <h3>Terms &amp; Conditions</h3>
+          <ul>
+            <li>No gifts. Seriously. Your presence is the gift. We mean it.</li>
+            <li>No need to contribute to the room. We've got it. Just show up.</li>
+            <li>You will be expected to sing. Reluctance is not a valid RSVP response.</li>
+            <li>By attending, you acknowledge that karaoke selections are final and non-negotiable.</li>
+            <li>We reserve the right to make this an annual consolidation event.</li>
+          </ul>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;"><span class="blinkie">★ KARAOKE OR BUST ★</span></div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="theme-section section-yellow fade-in" id="quiz">
+      <span class="sticker" style="top:16px; right:18px; transform:rotate(10deg);">🎤</span>
+      <span class="sticker" style="bottom:20px; left:20px; transform:rotate(-15deg);">✦</span>
+      <div class="section-inner">
+        <span class="section-label">For Funsies</span>
+        <h2 class="section-title">What's Your Spirit Animal?</h2>
+        <div class="quiz-card" id="quiz-card"></div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="theme-section section-purple fade-in" id="rsvp">
+      <span class="sticker" style="top:18px; left:18px; transform:rotate(-10deg);">🎂</span>
+      <span class="sticker" style="bottom:16px; right:20px; transform:rotate(14deg);">✦</span>
+      <div class="section-inner">
+        <span class="section-label">Required Action Item</span>
+        <h2 class="section-title">RSVP</h2>
+        <p class="section-body" style="margin-bottom:28px;">Headcount matters. Please let us know by <strong>July 15th</strong> so we can plan accordingly.</p>
+
+        <form id="rsvp-form" name="rsvp" data-netlify="true">
+          <input type="hidden" name="form-name" value="rsvp" />
+
+          <div class="form-group">
+            <label class="field-label" for="name">Your Name</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="First and last, please" />
+          </div>
+
+          <div class="form-group">
+            <span class="field-label">Will you be attending?</span>
             <label class="radio-option">
               <input type="radio" name="attending" value="yes" />
               <span>Yes — I'll be there and I'm already thinking about my setlist</span>
@@ -528,11 +402,9 @@
               <span>No — I cannot make it and I will think about this decision for years</span>
             </label>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>Are you bringing a plus one?</label>
-          <div class="radio-group">
+          <div class="form-group">
+            <span class="field-label">Are you bringing a plus one?</span>
             <label class="radio-option">
               <input type="radio" name="plusone" value="yes" />
               <span>Yes — they will also be expected to sing</span>
@@ -542,12 +414,10 @@
               <span>No — flying solo, which is brave</span>
             </label>
           </div>
-        </div>
 
-        <div class="form-group" style="margin-top: 40px;">
-          <span class="subscribe-label">While We Have You</span>
-          <span class="subscribe-sub">Future Hatch event communications — select one:</span>
-          <div class="subscribe-group">
+          <div class="form-group">
+            <span class="sub-label">While We Have You</span>
+            <span class="sub-sub">Future Hatch event communications — select one:</span>
             <label class="radio-option">
               <input type="radio" name="subscribe" value="yes" />
               <span>Yes, add me to the list — I'm locked in, let's go</span>
@@ -561,42 +431,278 @@
               <span>Absolutely not, you two are insufferable</span>
             </label>
           </div>
+
+          <button type="submit" class="submit-btn">SUBMIT RSVP ✦</button>
+          <p class="rsvp-error" id="rsvp-error" hidden></p>
+          <p class="deadline-note">RSVP deadline: July 15, 2025 · Responses after this date will be reviewed on a case-by-case basis</p>
+        </form>
+
+        <div class="rsvp-success" id="rsvp-success">
+          <p class="big">You're In.</p>
+          <p>Thanks for RSVPing. We'll see you July 31st. Start warming up your vocals — this is not a spectator event.</p>
         </div>
-
-        <button class="submit-btn" onclick="submitRSVP()">SUBMIT RSVP</button>
-        <p class="deadline-note">RSVP deadline: July 15, 2025 · Responses after this date will be reviewed on a case-by-case basis</p>
-      </div>
-
-      <div class="rsvp-success" id="rsvp-success">
-        <p class="big">You're In.</p>
-        <p>Thanks for RSVPing. We'll see you July 31st. Start warming up your vocals — this is not a spectator event.</p>
       </div>
     </section>
-  </div>
 
-  <footer>
-    © 2025 Camryn & Dallas Hatch · Tampa, FL · Economically consolidated since 2025
-  </footer>
+    <footer>© 2025 Camryn &amp; Dallas Hatch · Tampa, FL · Economically consolidated since 2025</footer>
+  </main>
 
   <script>
-    // Fade in on scroll
+    const PASSWORD = 'mixtape';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── Password gate ──
+    const lockScreen = document.getElementById('lock-screen');
+    const lockForm = document.getElementById('lock-form');
+    const lockInput = document.getElementById('password-input');
+    const lockError = document.getElementById('lock-error');
+    const lockDisc = document.getElementById('lock-disc');
+
+    function spawnGlitterBurst() {
+      if (reducedMotion) return;
+      const rect = lockDisc.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const pieces = ['✦', '✧', '★', '💿', '✨'];
+      for (let i = 0; i < 16; i++) {
+        const el = document.createElement('span');
+        el.className = 'glitter-burst-piece';
+        el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+        const angle = (Math.PI * 2 * i) / 16;
+        const dist = 80 + Math.random() * 60;
+        el.style.left = cx + 'px';
+        el.style.top = cy + 'px';
+        el.style.setProperty('--gx', Math.cos(angle) * dist + 'px');
+        el.style.setProperty('--gy', Math.sin(angle) * dist + 'px');
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 900);
+      }
+    }
+
+    function unlock() {
+      if (!reducedMotion) {
+        lockDisc.classList.add('spinning');
+        spawnGlitterBurst();
+      }
+      const delay = reducedMotion ? 0 : 700;
+      setTimeout(() => {
+        lockScreen.classList.add('unlocking');
+        document.body.classList.remove('locked');
+        setTimeout(() => { lockScreen.style.display = 'none'; }, reducedMotion ? 0 : 500);
+      }, delay);
+    }
+
+    lockForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const value = lockInput.value.trim().toLowerCase();
+      if (value === PASSWORD) {
+        lockError.textContent = '';
+        unlock();
+      } else {
+        lockError.textContent = "ah ah ah, you didn't say the magic word!";
+        lockForm.classList.remove('shake');
+        void lockForm.offsetWidth;
+        lockForm.classList.add('shake');
+      }
+    });
+
+    // ── Fade-in on scroll ──
     const fadeEls = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
     fadeEls.forEach(el => observer.observe(el));
 
-    // RSVP submit
-    function submitRSVP() {
-      const name = document.getElementById('name').value.trim();
-      const attending = document.querySelector('input[name="attending"]:checked');
-      if (!name || !attending) {
-        alert('Please fill out your name and let us know if you\'re attending.');
+    // ── Cursor sparkle trail (desktop only) ──
+    if (window.matchMedia('(pointer: fine)').matches && !reducedMotion) {
+      let lastSparkle = 0;
+      document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastSparkle < 70) return;
+        lastSparkle = now;
+        const el = document.createElement('span');
+        el.className = 'cursor-sparkle';
+        el.textContent = Math.random() > 0.5 ? '✦' : '💿';
+        el.style.left = e.pageX + 'px';
+        el.style.top = e.pageY + 'px';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 700);
+      });
+    }
+
+    // ── Spirit animal quiz ──
+    const quizQuestions = [
+      {
+        q: "Q1. Karaoke is starting. What's your move?",
+        options: [
+          { text: "Belt a power ballad like it's the Grammys, tears optional but likely", points: ['retriever', 'jellyfish'] },
+          { text: "Pick something so obscure no one can sing along, on purpose", points: ['pigeon', 'crow'] },
+          { text: "Hijack the mic for a duet nobody agreed to", points: ['chihuahua', 'raccoon'] },
+          { text: "Quietly slip away from the mic and reappear with a fresh drink", points: ['capybara', 'pigeon'] }
+        ]
+      },
+      {
+        q: 'Q2. Someone asks "wait, whose idea was this combined party?" You say:',
+        options: [
+          { text: '"Mine, obviously. Have you met us?"', points: ['jellyfish', 'chihuahua'] },
+          { text: '"Does it matter? There\'s free karaoke."', points: ['capybara'] },
+          { text: '"Honestly? Chaos. Pure chaos."', points: ['raccoon'] },
+          { text: "You're already gone, no one knows where", points: ['pigeon', 'crow'] }
+        ]
+      },
+      {
+        q: "Q3. It's 11:47pm. Where are you?",
+        options: [
+          { text: "Still on the mic, two songs deep into a setlist no one asked for", points: ['chihuahua', 'jellyfish'] },
+          { text: "In the corner, watching everything happen, saying nothing", points: ['pigeon', 'crow'] },
+          { text: "Outside \"getting air\" (you are fine) (you are lying)", points: ['retriever'] },
+          { text: "Floating through the night vibes-first, no plan, no worries", points: ['capybara', 'raccoon'] }
+        ]
+      },
+      {
+        q: "Q4. Your honest plus-one strategy:",
+        options: [
+          { text: "Bring someone unhinged to match your energy", points: ['raccoon', 'chihuahua'] },
+          { text: "Bring someone calm to balance you out", points: ['capybara'] },
+          { text: "Didn't tell them where we're going, surprise", points: ['crow', 'pigeon'] },
+          { text: "You ARE the plus one's plus one, it's complicated", points: ['retriever', 'pigeon'] }
+        ]
+      },
+      {
+        q: "Q5. A CD/mixtape is made about your night. What's track 1?",
+        options: [
+          { text: "Something loud, dramatic, way too much build-up", points: ['jellyfish', 'chihuahua'] },
+          { text: "A deep cut nobody's heard, but it's perfect", points: ['pigeon', 'crow'] },
+          { text: "A feel-good song you'll play 4 more times", points: ['retriever', 'capybara'] },
+          { text: "Whatever's already playing, you didn't pick it", points: ['raccoon', 'capybara'] }
+        ]
+      }
+    ];
+
+    const quizResults = {
+      raccoon: { emoji: '🦝', title: 'A Raccoon That Fell In The Pool But Is Completely Unbothered', desc: 'You thrive in chaos, you will always land on your feet, and honestly? You looked great doing it. No notes.' },
+      jellyfish: { emoji: '🪩', title: 'A Disco Ball Jellyfish', desc: "You glow without trying, you're a little too much in the best way, and you will absolutely end up the main character of someone's Instagram story tonight." },
+      retriever: { emoji: '🐕', title: 'A Golden Retriever That Just Saw A Ghost', desc: 'You love everyone immediately and full-body flinch at literally everything. A beautiful, anxious mess. We adore you.' },
+      pigeon: { emoji: '🐦', title: 'A Pigeon That Has Personally Seen Too Much', desc: "You've seen things. You don't talk about it. You will still show up, observe everything, and somehow know all the gossip by midnight." },
+      capybara: { emoji: '🦦', title: 'A Capybara Floating Down A Lazy River With A Margarita', desc: "Nothing fazes you. You are simply floating. The party could catch fire and you'd ask if anyone wants to split a quesadilla first." },
+      chihuahua: { emoji: '🐶', title: 'A Chihuahua In A Sweater Barking At The Vacuum', desc: 'Small, loud, and absolutely ready to fight something twice your size for no reason. We respect the commitment.' },
+      crow: { emoji: '🐦‍⬛', title: "A Crow That Stole Someone's Car Keys And Is Thriving", desc: 'You are clever, a little bit feral, and currently in possession of something that is not yours. Iconic behavior, never change.' }
+    };
+
+    const quizCard = document.getElementById('quiz-card');
+    let quizIndex = 0;
+    let quizScores = {};
+
+    function resetQuiz() {
+      quizIndex = 0;
+      quizScores = {};
+      Object.keys(quizResults).forEach(k => quizScores[k] = 0);
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      if (quizIndex >= quizQuestions.length) {
+        renderResult();
         return;
       }
-      document.getElementById('rsvp-form').style.display = 'none';
-      document.getElementById('rsvp-success').style.display = 'block';
+      const question = quizQuestions[quizIndex];
+      quizCard.innerHTML = '';
+
+      const progress = document.createElement('div');
+      progress.className = 'quiz-progress';
+      progress.textContent = `QUESTION ${quizIndex + 1} OF ${quizQuestions.length}`;
+      quizCard.appendChild(progress);
+
+      const qEl = document.createElement('div');
+      qEl.className = 'quiz-q';
+      qEl.textContent = question.q;
+      quizCard.appendChild(qEl);
+
+      question.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quiz-opt';
+        btn.textContent = opt.text;
+        btn.addEventListener('click', () => {
+          opt.points.forEach(key => quizScores[key]++);
+          quizIndex++;
+          renderQuiz();
+        });
+        quizCard.appendChild(btn);
+      });
     }
+
+    function renderResult() {
+      let maxScore = -1;
+      let topKeys = [];
+      Object.keys(quizScores).forEach(key => {
+        if (quizScores[key] > maxScore) {
+          maxScore = quizScores[key];
+          topKeys = [key];
+        } else if (quizScores[key] === maxScore) {
+          topKeys.push(key);
+        }
+      });
+      const winner = topKeys[Math.floor(Math.random() * topKeys.length)];
+      const result = quizResults[winner];
+
+      quizCard.innerHTML = '';
+      const wrap = document.createElement('div');
+      wrap.className = 'quiz-result';
+      wrap.innerHTML = `
+        <div class="quiz-result-emoji">${result.emoji}</div>
+        <div class="quiz-result-title">Your Spirit Animal:<br>${result.title}</div>
+        <div class="quiz-result-desc">${result.desc}</div>
+      `;
+      const retake = document.createElement('button');
+      retake.type = 'button';
+      retake.className = 'quiz-retake';
+      retake.textContent = 'TAKE IT AGAIN ✦';
+      retake.addEventListener('click', resetQuiz);
+      wrap.appendChild(retake);
+      quizCard.appendChild(wrap);
+    }
+
+    resetQuiz();
+
+    // ── RSVP submission (Netlify Forms) ──
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpError = document.getElementById('rsvp-error');
+    const rsvpSuccess = document.getElementById('rsvp-success');
+
+    function encodeFormData(form) {
+      const data = new FormData(form);
+      return Array.from(data.entries())
+        .map(([key, value]) => encodeURIComponent(key) + '=' + encodeURIComponent(value))
+        .join('&');
+    }
+
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const attending = rsvpForm.querySelector('input[name="attending"]:checked');
+      rsvpError.hidden = true;
+      if (!name || !attending) {
+        rsvpError.textContent = "Please fill out your name and let us know if you're attending.";
+        rsvpError.hidden = false;
+        return;
+      }
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(rsvpForm)
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error('Submission failed');
+          rsvpForm.style.display = 'none';
+          rsvpSuccess.style.display = 'block';
+        })
+        .catch(() => {
+          rsvpError.textContent = "Something went wrong submitting your RSVP — please try again.";
+          rsvpError.hidden = false;
+        });
+    });
   </script>
 </body>
 </html>
