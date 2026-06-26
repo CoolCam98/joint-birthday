@@ -163,6 +163,37 @@
 
     .sticker { position: absolute; font-size: 22px; opacity: 0.85; pointer-events: none; }
 
+    /* ── DISCO BALL ── */
+    .disco-ball {
+      position: absolute; top: 14px; left: 16px; width: 64px; height: 64px;
+      z-index: 1; pointer-events: none;
+    }
+    .disco-ball-sphere {
+      width: 100%; height: 100%; border-radius: 50%;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.55) 0 6px, rgba(20,20,30,0.7) 6px 12px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.3) 0 6px, transparent 6px 12px);
+      background-size: 200% 200%;
+      box-shadow:
+        inset -10px -10px 20px rgba(0,0,0,0.65),
+        inset 8px 8px 16px rgba(255,255,255,0.3),
+        0 0 24px rgba(255,255,255,0.35);
+      animation: discoSpin 5s linear infinite;
+    }
+    @keyframes discoSpin { to { background-position: 200% 0, -200% 0; } }
+    .disco-ball .sparkle {
+      position: absolute; width: 4px; height: 4px; background: #fff; border-radius: 50%;
+      box-shadow: 0 0 8px 2px rgba(255,255,255,0.9);
+      animation: twinkle 1.6s ease-in-out infinite;
+    }
+    .disco-ball .s1 { top: 8%; left: 62%; animation-delay: 0s; }
+    .disco-ball .s2 { top: 62%; left: 12%; animation-delay: 0.5s; }
+    .disco-ball .s3 { top: 42%; left: 82%; animation-delay: 1s; }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
     .section-label {
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
       margin-bottom: 8px; display: inline-block; background: #000; color: #fff;
@@ -176,9 +207,32 @@
     .section-yellow .section-title { color: #1a0b2e; text-shadow: 2px 2px 0 #fff; }
     .section-yellow .section-label { background: #1a0b2e; }
 
+    /* ── MARCHING DASH OUTLINE ── */
+    .content-card, .detail-cell, .quiz-card { position: relative; }
+    .content-card::before, .detail-cell::before, .quiz-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, var(--dash-color, #fff) 50%, transparent 50%) repeat-x,
+        linear-gradient(90deg, var(--dash-color, #fff) 50%, transparent 50%) repeat-x,
+        linear-gradient(0deg, var(--dash-color, #fff) 50%, transparent 50%) repeat-y,
+        linear-gradient(0deg, var(--dash-color, #fff) 50%, transparent 50%) repeat-y;
+      background-size: 12px 2px, 12px 2px, 2px 12px, 2px 12px;
+      background-position: 0 0, 0 100%, 0 0, 100% 0;
+      background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+      animation: marchingAnts 12s linear infinite;
+    }
+    @keyframes marchingAnts {
+      to { background-position: 120px 0, -120px 100%, 0 -120px, 100% 120px; }
+    }
+
     .content-card {
-      background: rgba(0,0,0,0.45); border: 2px dashed #fff; border-radius: 12px;
+      background: rgba(0,0,0,0.45); border: 2px solid transparent; border-radius: 12px;
       padding: 20px 22px; max-width: 580px;
+      --dash-color: #fff;
     }
     .section-body { font-size: 20px; line-height: 1.75; color: #f3e9ff; }
     .section-body strong { color: var(--yellow); }
@@ -186,7 +240,7 @@
 
     .details-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
     @media (min-width: 540px) { .details-grid { grid-template-columns: 1fr 1fr; } }
-    .detail-cell { border: 2px dashed #000; border-radius: 8px; padding: 14px 16px; background: rgba(255,255,255,0.2); color: #000; transform: rotate(0.6deg); }
+    .detail-cell { border: 2px solid transparent; border-radius: 8px; padding: 14px 16px; background: rgba(255,255,255,0.2); color: #000; transform: rotate(0.6deg); --dash-color: #000; }
     .detail-cell:nth-child(even) { transform: rotate(-0.6deg); }
     .detail-cell.full { grid-column: 1 / -1; }
     .detail-cell .dlabel { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 4px; }
@@ -199,7 +253,7 @@
     .fine-print li::before { content: '✦'; position: absolute; left: 0; color: var(--yellow); }
 
     /* ── QUIZ ── */
-    .quiz-card { background: rgba(0,0,0,0.5); border: 3px dashed #1a0b2e; border-radius: 12px; padding: 24px; max-width: 580px; }
+    .quiz-card { background: rgba(0,0,0,0.5); border: 3px solid transparent; border-radius: 12px; padding: 24px; max-width: 580px; --dash-color: #1a0b2e; }
     .quiz-progress { font-size: 11px; letter-spacing: 1px; color: var(--yellow); margin-bottom: 12px; }
     .quiz-q { font-size: 19px; color: #fff; margin-bottom: 16px; line-height: 1.4; }
     .quiz-opt {
@@ -230,11 +284,15 @@
     .form-input::placeholder { color: rgba(255,255,255,0.6); }
     .radio-option {
       display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
-      padding: 13px 16px; border: 2px dashed rgba(255,255,255,0.6); border-radius: 8px;
-      background: rgba(0,0,0,0.25); margin-bottom: 8px; min-height: 44px;
+      padding: 13px 16px; border: 2px dashed #fff; border-radius: 8px;
+      background: rgba(0,0,0,0.35); margin-bottom: 8px; min-height: 44px;
+      transition: border-color 0.2s, background 0.2s;
     }
+    .radio-option:hover { border-color: var(--yellow); }
+    .radio-option:has(input:checked) { border-color: var(--yellow); background: rgba(255,230,0,0.18); }
     .radio-option input { margin-top: 3px; accent-color: var(--yellow); flex-shrink: 0; }
     .radio-option span { font-size: 16px; color: #f3e9ff; line-height: 1.5; }
+    .radio-option:has(input:checked) span { color: #fff; }
     .sub-label { font-size: 18px; color: var(--yellow); display: block; margin-bottom: 2px; }
     .sub-sub { font-size: 16px; opacity: 0.85; display: block; margin-bottom: 10px; color: #f3e9ff; }
     .submit-btn {
@@ -279,6 +337,8 @@
       .lock-marquee span { animation: none; }
       .cd-disc { transition: none; }
       .cursor-sparkle, .glitter-burst-piece { display: none; }
+      .content-card::before, .detail-cell::before, .quiz-card::before { animation: none; }
+      .disco-ball-sphere, .disco-ball .sparkle { animation: none; }
     }
   </style>
 </head>
@@ -318,6 +378,12 @@
     <section class="theme-section section-pink fade-in">
       <span class="sticker" style="top:18px; right:20px; transform:rotate(15deg);">💖</span>
       <span class="sticker" style="bottom:24px; left:16px; transform:rotate(-10deg);">✦</span>
+      <div class="disco-ball" aria-hidden="true">
+        <div class="disco-ball-sphere"></div>
+        <span class="sparkle s1"></span>
+        <span class="sparkle s2"></span>
+        <span class="sparkle s3"></span>
+      </div>
       <div class="section-inner">
         <h2 class="section-title">Best of Both Birthdays</h2>
         <div class="content-card">
