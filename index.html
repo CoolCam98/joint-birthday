@@ -109,7 +109,7 @@
     .lock-title .amp { color: var(--yellow); }
 
     .lock-tagline {
-      margin-top: 14px; font-size: 14px; letter-spacing: 0.3px; color: #fff0fa;
+      margin-top: 14px; font-size: 16px; letter-spacing: 0.3px; color: #fff0fa;
       text-shadow: 1px 1px 0 #000; max-width: 280px;
     }
     .lock-tagline em { color: var(--yellow); font-style: normal; font-weight: bold; }
@@ -117,7 +117,7 @@
     .blinkie {
       display: inline-block; padding: 4px 10px;
       background: #000; border: 1px solid var(--yellow); color: var(--yellow);
-      font-size: 10px; letter-spacing: 1px;
+      font-size: 14px; letter-spacing: 1px;
       animation: blinkie-blink 1.4s steps(1) infinite;
     }
     @keyframes blinkie-blink { 50% { opacity: 0.25; } }
@@ -125,7 +125,7 @@
     .lock-body .blinkie { margin-top: 16px; }
 
     .lock-form { margin-top: 26px; max-width: 280px; width: 100%; }
-    .lock-hint { font-size: 11px; color: #fff0fa; margin-bottom: 8px; }
+    .lock-hint { font-size: 16px; font-weight: 700; color: #fff0fa; margin-bottom: 8px; }
     .lock-input {
       width: 100%; padding: 14px; border-radius: 6px; border: 2px dashed #fff;
       background: rgba(0,0,0,0.25); color: #fff; font-family: 'Comic Neue', 'Comic Sans MS', cursive;
@@ -138,7 +138,7 @@
       font-weight: bold; font-size: 16px; letter-spacing: 1px; cursor: pointer;
     }
     .lock-btn:hover { opacity: 0.9; }
-    .lock-error { margin-top: 10px; font-size: 13px; color: var(--yellow); min-height: 1.2em; }
+    .lock-error { margin-top: 10px; font-size: 15px; color: var(--yellow); min-height: 1.2em; }
     .lock-form.shake { animation: shake 0.4s; }
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
@@ -180,7 +180,7 @@
       background: rgba(0,0,0,0.45); border: 2px dashed #fff; border-radius: 12px;
       padding: 20px 22px; max-width: 580px;
     }
-    .section-body { font-size: 15px; line-height: 1.75; color: #f3e9ff; }
+    .section-body { font-size: 20px; line-height: 1.75; color: #f3e9ff; }
     .section-body strong { color: var(--yellow); }
     .section-body p + p { margin-top: 14px; }
 
@@ -194,8 +194,8 @@
 
     .fine-print { margin-top: 24px; }
     .fine-print h3 { font-size: 20px; color: var(--yellow); margin-bottom: 14px; }
-    .fine-print ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .fine-print li { font-size: 13px; color: #f3e9ff; line-height: 1.6; padding-left: 20px; position: relative; }
+    .fine-print ul { font-size: 18px; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .fine-print li { font-size: 18px; color: #f3e9ff; line-height: 1.6; padding-left: 20px; position: relative; }
     .fine-print li::before { content: '✦'; position: absolute; left: 0; color: var(--yellow); }
 
     /* ── QUIZ ── */
@@ -221,7 +221,7 @@
 
     /* ── RSVP FORM ── */
     .form-group { margin-bottom: 20px; }
-    .form-group label.field-label { font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; display: block; color: #fff; }
+    .form-group label.field-label { font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; display: block; color: #fff; }
     .form-input {
       width: 100%; padding: 14px; border-radius: 8px; border: 2px dashed #fff;
       background: rgba(0,0,0,0.35); color: #fff; font-family: 'Comic Neue', 'Comic Sans MS', cursive;
@@ -234,16 +234,16 @@
       background: rgba(0,0,0,0.25); margin-bottom: 8px; min-height: 44px;
     }
     .radio-option input { margin-top: 3px; accent-color: var(--yellow); flex-shrink: 0; }
-    .radio-option span { font-size: 13px; color: #f3e9ff; line-height: 1.5; }
-    .sub-label { font-size: 16px; color: var(--yellow); display: block; margin-bottom: 2px; }
-    .sub-sub { font-size: 11px; opacity: 0.85; display: block; margin-bottom: 10px; color: #f3e9ff; }
+    .radio-option span { font-size: 16px; color: #f3e9ff; line-height: 1.5; }
+    .sub-label { font-size: 18px; color: var(--yellow); display: block; margin-bottom: 2px; }
+    .sub-sub { font-size: 16px; opacity: 0.85; display: block; margin-bottom: 10px; color: #f3e9ff; }
     .submit-btn {
       width: 100%; padding: 16px; border-radius: 10px; border: none; background: var(--yellow);
       color: #000; font-family: 'Comic Neue', 'Comic Sans MS', cursive; font-weight: bold;
       font-size: 18px; letter-spacing: 1px; cursor: pointer; margin-top: 8px; min-height: 44px;
     }
     .submit-btn:hover { opacity: 0.9; }
-    .deadline-note { text-align: center; font-size: 12px; color: #f3e9ff; opacity: 0.85; margin-top: 14px; }
+    .deadline-note { text-align: center; font-size: 16px; color: #f3e9ff; opacity: 0.85; margin-top: 14px; }
     .rsvp-error { color: var(--yellow); font-size: 13px; text-align: center; margin-top: 10px; }
 
     .rsvp-success { display: none; text-align: center; padding: 40px 0 0; }
@@ -251,7 +251,7 @@
     .rsvp-success p { font-size: 14px; color: #f3e9ff; max-width: 380px; margin: 0 auto; line-height: 1.7; }
 
     /* ── FOOTER ── */
-    footer { text-align: center; padding: 40px 24px; font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
+    footer { text-align: center; padding: 40px 24px; font-size: 12px; color: rgb(255, 255, 255); letter-spacing: 0.1em; }
 
     /* ── CURSOR SPARKLE TRAIL (desktop only) ── */
     .cursor-sparkle {
@@ -298,14 +298,13 @@
 
   <!-- LOCK SCREEN -->
   <div class="lock-screen" id="lock-screen">
-    <div class="lock-marquee"><span>✨ you are cordially invited... but you gotta know the magic word ✨&nbsp;&nbsp;&nbsp;&nbsp;✨ you are cordially invited... but you gotta know the magic word ✨</span></div>
     <div class="lock-body">
       <div class="cd-disc" id="lock-disc"></div>
       <h1 class="lock-title">camryn <span class="amp">&amp;</span> dallas</h1>
-      <p class="lock-tagline">A joint birthday celebration. <em>Not weird. It's economical.</em></p>
-      <span class="blinkie">★ C+D 4EVER ★</span>
+      <p class="lock-tagline">A joint birthday celebration. <em>It's not weird. It's economical.</em></p>
+      <span class="blinkie">★ Are You Ready to Party?  ★</span>
       <form class="lock-form" id="lock-form" autocomplete="off">
-        <p class="lock-hint">got the magic word? type it below ✦</p>
+        <p class="lock-hint">got the magic word? type it below</p>
         <input type="text" id="password-input" class="lock-input" placeholder="enter password..." autocomplete="off" />
         <button type="submit" class="lock-btn">UNLOCK ✦</button>
         <p class="lock-error" id="lock-error" aria-live="polite"></p>
@@ -315,19 +314,15 @@
 
   <!-- MAIN SITE -->
   <main id="site-content">
-    <div class="celebrate">★ ✦ you cracked the code ✦ ★</div>
-
     <!-- SITUATION -->
     <section class="theme-section section-pink fade-in">
       <span class="sticker" style="top:18px; right:20px; transform:rotate(15deg);">💖</span>
       <span class="sticker" style="bottom:24px; left:16px; transform:rotate(-10deg);">✦</span>
       <div class="section-inner">
-        <span class="section-label">The Situation</span>
-        <h2 class="section-title">Two Birthdays.<br>One Party.<br>Zero Apologies.</h2>
+        <h2 class="section-title">Best of Both Birthdays</h2>
         <div class="content-card">
           <div class="section-body">
-            <p>Dallas turns <strong>29 on June 17th</strong>. Camryn turns <strong>28 on August 11th</strong>. After careful logistical analysis, we have determined that holding two separate parties would be inefficient, exhausting, and frankly, a lot to ask of everyone's social calendars.</p>
-            <p>So we're doing this once, we're doing it right, and we're doing it at a karaoke bar. Come celebrate with us — or don't, but you'll regret missing it.</p>
+            <p>Dallas turns <strong>29 on June 17th</strong>. Camryn turns <strong>28 on August 11th</strong>. After careful logistical analysis, we have determined that holding two separate parties would be inefficient, exhausting, and frankly, a lot to ask. Come celebrate with us — or don't, but you'll regret missing it.</p>
           </div>
         </div>
       </div>
@@ -338,39 +333,26 @@
       <span class="sticker" style="top:20px; left:18px; transform:rotate(-12deg);">💿</span>
       <span class="sticker" style="bottom:18px; right:22px; transform:rotate(18deg);">⚡</span>
       <div class="section-inner">
-        <span class="section-label">Operational Details</span>
         <h2 class="section-title">The Logistics</h2>
         <div class="details-grid">
-          <div class="detail-cell"><span class="dlabel">Date</span><span class="dvalue">July 31, 2025</span></div>
+          <div class="detail-cell"><span class="dlabel">Date</span><span class="dvalue">August 7th, 2026</span></div>
           <div class="detail-cell"><span class="dlabel">Time</span><span class="dvalue">TBD</span></div>
-          <div class="detail-cell"><span class="dlabel">Venue</span><span class="dvalue">La La's</span></div>
-          <div class="detail-cell"><span class="dlabel">Location</span><span class="dvalue">Tampa, FL</span></div>
-          <div class="detail-cell full"><span class="dlabel">Format</span><span class="dvalue" style="font-size:16px;">Private karaoke room · 25 guests · Everyone gets a plus one</span></div>
+          <div class="detail-cell"><span class="dlabel">Venue</span><span class="dvalue">La La's Karaoke Bar - Tampa</span></div>
+          <div class="detail-cell"><span class="dlabel">Location</span><span class="dvalue">208 South Howard Ave</span></div>
+          <div class="detail-cell full"><span class="dlabel">Details</span><span class="dvalue">Private karaoke room · Everyone gets a plus one</span></div>
         </div>
 
         <div class="content-card fine-print">
           <h3>Terms &amp; Conditions</h3>
           <ul>
             <li>No gifts. Seriously. Your presence is the gift. We mean it.</li>
-            <li>No need to contribute to the room. We've got it. Just show up.</li>
-            <li>You will be expected to sing. Reluctance is not a valid RSVP response.</li>
-            <li>By attending, you acknowledge that karaoke selections are final and non-negotiable.</li>
-            <li>We reserve the right to make this an annual consolidation event.</li>
+            <li>No need to help pay for the room. We've got it. Get drunk instead.</li>
+            <li>Singing is encouraged, but not required. Your anxiety is not on the guest list.</li>
+            <li>What you pick to sing will be remembered. We're not threatening you. We're informing you.</li>
           </ul>
         </div>
 
-        <div style="text-align:center; margin-top:20px;"><span class="blinkie">★ KARAOKE OR BUST ★</span></div>
-      </div>
-    </section>
-
-    <!-- QUIZ -->
-    <section class="theme-section section-yellow fade-in" id="quiz">
-      <span class="sticker" style="top:16px; right:18px; transform:rotate(10deg);">🎤</span>
-      <span class="sticker" style="bottom:20px; left:20px; transform:rotate(-15deg);">✦</span>
-      <div class="section-inner">
-        <span class="section-label">For Funsies</span>
-        <h2 class="section-title">What's Your Spirit Animal?</h2>
-        <div class="quiz-card" id="quiz-card"></div>
+        <div style="text-align:center; margin-top:20px;"><span class="blinkie">★ WE BELIEVE IN YOU ★</span></div>
       </div>
     </section>
 
@@ -387,8 +369,8 @@
           <input type="hidden" name="form-name" value="rsvp" />
 
           <div class="form-group">
-            <label class="field-label" for="name">Your Name</label>
-            <input type="text" id="name" name="name" class="form-input" placeholder="First and last, please" />
+            <label class="field-label" for="name">Your Name(s)</label>
+            <input type="text" id="name" name="name" class="form-input" />
           </div>
 
           <div class="form-group">
@@ -404,23 +386,11 @@
           </div>
 
           <div class="form-group">
-            <span class="field-label">Are you bringing a plus one?</span>
-            <label class="radio-option">
-              <input type="radio" name="plusone" value="yes" />
-              <span>Yes — they will also be expected to sing</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="plusone" value="no" />
-              <span>No — flying solo, which is brave</span>
-            </label>
-          </div>
-
-          <div class="form-group">
             <span class="sub-label">While We Have You</span>
-            <span class="sub-sub">Future Hatch event communications — select one:</span>
+            <span class="sub-sub">Would you like to receive future Hatch-Cotton party invites? (hint hint...our next party is ging to be Fall Festival themed)</span>
             <label class="radio-option">
               <input type="radio" name="subscribe" value="yes" />
-              <span>Yes, add me to the list — I'm locked in, let's go</span>
+              <span>Yes, add me to the list — I'm eagerly awaiting the details</span>
             </label>
             <label class="radio-option">
               <input type="radio" name="subscribe" value="maybe" />
@@ -434,21 +404,32 @@
 
           <button type="submit" class="submit-btn">SUBMIT RSVP ✦</button>
           <p class="rsvp-error" id="rsvp-error" hidden></p>
-          <p class="deadline-note">RSVP deadline: July 15, 2025 · Responses after this date will be reviewed on a case-by-case basis</p>
+          <p class="deadline-note">RSVP deadline: July 15, 2025 · Don't be that one person that doesn't RSVP and then texts us like 2 days before. We're both pushovers and will say it' sno problem, but then we will frantically be trying to book a larger room. So like, just RSVP please. K thanks.</p>
         </form>
 
         <div class="rsvp-success" id="rsvp-success">
           <p class="big">You're In.</p>
-          <p>Thanks for RSVPing. We'll see you July 31st. Start warming up your vocals — this is not a spectator event.</p>
+          <p>Thanks for RSVPing. We'll see you August 7th!</p>
         </div>
       </div>
     </section>
 
-    <footer>© 2025 Camryn &amp; Dallas Hatch · Tampa, FL · Economically consolidated since 2025</footer>
+        <!-- QUIZ -->
+    <section class="theme-section section-yellow fade-in" id="quiz">
+      <span class="sticker" style="top:16px; right:18px; transform:rotate(10deg);">🎤</span>
+      <span class="sticker" style="bottom:20px; left:20px; transform:rotate(-15deg);">✦</span>
+      <div class="section-inner">
+        <span class="section-label">For Funsies</span>
+        <h2 class="section-title">What's Your Spirit Animal?</h2>
+        <div class="quiz-card" id="quiz-card"></div>
+      </div>
+    </section>
+
+    <footer>© 2026 Camryn Hatch &amp; Dallas Cotton Productions</footer>
   </main>
 
   <script>
-    const PASSWORD = 'mixtape';
+    const PASSWORD = 'friends';
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ── Password gate ──
