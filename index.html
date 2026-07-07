@@ -284,18 +284,6 @@
 </head>
 <body class="locked display-font">
 
-  <!-- Hidden static form so Netlify's build bot can detect the RSVP form -->
-  <form name="rsvp" data-netlify="true" hidden>
-    <input type="text" name="name" />
-    <input type="radio" name="attending" value="yes" />
-    <input type="radio" name="attending" value="no" />
-    <input type="radio" name="plusone" value="yes" />
-    <input type="radio" name="plusone" value="no" />
-    <input type="radio" name="subscribe" value="yes" />
-    <input type="radio" name="subscribe" value="maybe" />
-    <input type="radio" name="subscribe" value="no" />
-  </form>
-
   <!-- LOCK SCREEN -->
   <div class="lock-screen" id="lock-screen">
     <div class="lock-body">
@@ -365,7 +353,7 @@
         <h2 class="section-title">RSVP</h2>
         <p class="section-body" style="margin-bottom:28px;">Headcount matters. Please let us know by <strong>July 24th</strong> so we can plan accordingly.</p>
 
-        <form id="rsvp-form" name="rsvp" data-netlify="true">
+        <form id="rsvp-form" name="rsvp" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="rsvp" />
 
           <div class="form-group">
