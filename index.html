@@ -396,8 +396,8 @@
         </form>
 
         <div class="rsvp-success" id="rsvp-success">
-          <p class="big">You're In.</p>
-          <p>Thanks for RSVPing. We'll see you August 7th!</p>
+          <p class="big" id="rsvp-success-title">You're In.</p>
+          <p id="rsvp-success-body">Thanks for RSVPing. We'll see you August 7th!</p>
         </div>
       </div>
     </section>
@@ -647,6 +647,8 @@
     const rsvpForm = document.getElementById('rsvp-form');
     const rsvpError = document.getElementById('rsvp-error');
     const rsvpSuccess = document.getElementById('rsvp-success');
+    const rsvpSuccessTitle = document.getElementById('rsvp-success-title');
+    const rsvpSuccessBody = document.getElementById('rsvp-success-body');
 
     function encodeFormData(form) {
       const data = new FormData(form);
@@ -673,6 +675,13 @@
       })
         .then((response) => {
           if (!response.ok) throw new Error('Submission failed');
+          if (attending.value === 'yes') {
+            rsvpSuccessTitle.textContent = "You're In.";
+            rsvpSuccessBody.textContent = "Thanks for RSVPing. We'll see you August 7th!";
+          } else {
+            rsvpSuccessTitle.textContent = "Noted.";
+            rsvpSuccessBody.textContent = "Thanks for letting us know — you'll be missed, but we get it. See you at the next one!";
+          }
           rsvpForm.style.display = 'none';
           rsvpSuccess.style.display = 'block';
         })
