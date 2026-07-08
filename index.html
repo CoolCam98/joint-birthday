@@ -284,6 +284,12 @@
 </head>
 <body class="locked display-font">
 
+  <!-- Hidden static form so Netlify's build bot can detect the quiz-result form (submitted via JS, never rendered as a real <form>) -->
+  <form name="quiz-result" data-netlify="true" hidden>
+    <input type="text" name="name" />
+    <input type="text" name="result" />
+  </form>
+
   <!-- LOCK SCREEN -->
   <div class="lock-screen" id="lock-screen">
     <div class="lock-body">
@@ -571,6 +577,17 @@
     let quizIndex = 0;
     let quizScores = {};
 
+    function submitQuizResult(resultTitle) {
+      const nameInput = document.getElementById('name');
+      const name = nameInput ? nameInput.value.trim() : '';
+      const body = new URLSearchParams({ 'form-name': 'quiz-result', name, result: resultTitle }).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body
+      }).catch(() => {});
+    }
+
     function resetQuiz() {
       quizIndex = 0;
       quizScores = {};
@@ -623,6 +640,7 @@
       });
       const winner = topKeys[Math.floor(Math.random() * topKeys.length)];
       const result = quizResults[winner];
+      submitQuizResult(result.title);
 
       quizCard.innerHTML = '';
       const wrap = document.createElement('div');
